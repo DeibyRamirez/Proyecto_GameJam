@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://byhaghwppvfg3"]
+
+[ext_resource type="PackedScene" uid="uid://co6e1dt4dqjrq" path="res://escenas/jugador.tscn" id="1_cdbbl"]
+[ext_resource type="PackedScene" uid="uid://c7d0vx73gcima" path="res://escenas/llave.tscn" id="2_6wjgb"]
+[ext_resource type="PackedScene" uid="uid://dr8o77vyl68lu" path="res://escenas/mascara.tscn" id="3_glrvs"]
+
+[sub_resource type="Environment" id="Environment_1sur8"]
+ambient_light_source = 3
+ambient_light_color = Color(0.6300362, 0.5256701, 0.23466969, 1)
+ambient_light_energy = 1.9
+
+[node name="Mundo" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(20, 1, 20)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1sur8")
+
+[node name="Jugador" parent="." instance=ExtResource("1_cdbbl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.239395, 1.3961712, -0.2677002)
+
+[node name="Llave" parent="." instance=ExtResource("2_6wjgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1554623, 1.546638, 6.7487793)
+
+[node name="Mascara" parent="." instance=ExtResource("3_glrvs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.596425, 1.6074649, 1.3475342)
