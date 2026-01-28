@@ -8,6 +8,7 @@
 ambient_light_source = 3
 ambient_light_color = Color(0.6300362, 0.5256701, 0.23466969, 1)
 ambient_light_energy = 1.9
+fog_enabled = true
 
 [node name="Mundo" type="Node3D"]
 
@@ -26,3 +27,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1554623, 1.546638, 6.748779
 
 [node name="Mascara" parent="." instance=ExtResource("3_glrvs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.596425, 1.6074649, 1.3475342)
+
+[node name="Luna" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.96445143, 0.26426023, 0, -0.26426023, 0.96445143, 8.91568, 18.601257, 11.918457)
+light_color = Color(0.81960785, 0.8509804, 0.88235295, 1)
+light_energy = 0.2

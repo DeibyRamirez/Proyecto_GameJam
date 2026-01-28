@@ -3,6 +3,8 @@ extends CharacterBody3D
 @onready var head = $Cabeza
 @onready var camera = $Cabeza/Camera3D
 @onready var raycast = $Cabeza/Camera3D/RayCast3D 
+# Al principio del script, bajo las otras variables @onready
+@onready var linterna = $Cabeza/Camera3D/SpotLight3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -34,6 +36,14 @@ func _unhandled_input(event):
 					recoger_llave(objeto)
 				elif objeto.is_in_group("mascaras"):
 					recoger_mascara(objeto)
+	
+	# Lógica para encender/apagar la linterna
+	if event.is_action_pressed("linterna"):
+		# El símbolo "!" invierte el estado actual (si está prendida, la apaga)
+		linterna.visible = !linterna.visible
+		
+		# Opcional: Sonido de click
+		print("Linterna: ", linterna.visible)
 
 func _physics_process(delta):
 	if not is_on_floor():
