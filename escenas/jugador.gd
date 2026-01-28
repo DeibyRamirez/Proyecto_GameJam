@@ -6,7 +6,11 @@ extends CharacterBody3D
 # Al principio del script, bajo las otras variables @onready
 @onready var linterna = $Cabeza/Camera3D/SpotLight3D
 
-const SPEED = 5.0
+# Sonidos..
+@onready var sonido_linterna = $SonidoLinterna
+@onready var sonido_pasos = $SonidoPasos
+
+const SPEED = 4.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVITY = 0.003 
 
@@ -41,6 +45,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("linterna"):
 		# El símbolo "!" invierte el estado actual (si está prendida, la apaga)
 		linterna.visible = !linterna.visible
+		sonido_linterna.play() # Reproduce el click
 		
 		# Opcional: Sonido de click
 		print("Linterna: ", linterna.visible)
@@ -63,6 +68,17 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	
+	# --- LÓGICA DE PASOS ---
+	# Verificamos si el personaje está en el suelo y si realmente se está moviendo
+	# Usamos velocity.length() > 1.0 para ignorar micromovimientos
+	if is_on_floor() and velocity.length() > 1.0:
+		if not sonido_pasos.playing:
+			sonido_pasos.play()
+	else:
+		# Si se detiene o salta, paramos el sonido
+		if sonido_pasos.playing:
+			sonido_pasos.stop()
 
 # --- FUNCIONES DE RECOLECCIÓN ---
 

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dtl2mhg1g5qte"
+path="res://.godot/imported/Respiracion Rapida.wav-287349f84b61181afa8a7ab41252388e.sample"
+
+[deps]
+
+source_file="res://assets/sonidos/Respiracion Rapida.wav"
+dest_files=["res://.godot/imported/Respiracion Rapida.wav-287349f84b61181afa8a7ab41252388e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

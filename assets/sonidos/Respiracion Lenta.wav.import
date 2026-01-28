@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://deeyvjygn4li5"
+path="res://.godot/imported/Respiracion Lenta.wav-b897261df4adb2458a10953451b3ad0a.sample"
+
+[deps]
+
+source_file="res://assets/sonidos/Respiracion Lenta.wav"
+dest_files=["res://.godot/imported/Respiracion Lenta.wav-b897261df4adb2458a10953451b3ad0a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

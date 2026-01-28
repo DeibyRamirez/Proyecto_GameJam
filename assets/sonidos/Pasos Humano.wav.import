@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dkxn4pmnc0fjj"
+path="res://.godot/imported/Pasos Humano.wav-d71831642d7612baffb9a867fbba501f.sample"
+
+[deps]
+
+source_file="res://assets/sonidos/Pasos Humano.wav"
+dest_files=["res://.godot/imported/Pasos Humano.wav-d71831642d7612baffb9a867fbba501f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
