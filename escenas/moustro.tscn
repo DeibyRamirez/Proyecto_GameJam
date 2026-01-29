@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://xtea6lpl1r8"]
+
+[ext_resource type="Script" uid="uid://dqx5ii203u06g" path="res://escenas/moustro.gd" id="1_15s4m"]
+[ext_resource type="AudioStream" uid="uid://b51u3xv03fi2l" path="res://assets/sonidos/Jumcrek.wav" id="2_uk63i"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_16hu1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7oex1"]
+
+[sub_resource type="Animation" id="Animation_uk63i"]
+resource_name = "Attack"
+
+[sub_resource type="Animation" id="Animation_nqw2a"]
+resource_name = "Susto"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.1, 0.16, 0.18, 0.23, 0.25, 0.29, 0.34, 0.4, 0.52, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.034, -0.034, 0), Vector3(-0.115, -0.085, 0), Vector3(-0.115, 0.035, 0.035), Vector3(-0.015, -0.135, -0.065), Vector3(-0.175, 0.015, -0.065), Vector3(-0.045, -0.13, -0.1), Vector3(-0.185, -0.03, -0.1), Vector3(-0.315, -0.135, -0.1), Vector3(-0.195, -0.29, -0.1), Vector3(-0.26, -0.095, -0.1), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.06),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_oww8g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nqw2a"]
+_data = {
+&"Attack": SubResource("Animation_uk63i"),
+&"RESET": SubResource("Animation_oww8g"),
+&"Susto": SubResource("Animation_nqw2a")
+}
+
+[node name="Moustro" type="CharacterBody3D"]
+script = ExtResource("1_15s4m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_16hu1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_7oex1")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nqw2a")
+}
+
+[node name="SndAttack" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_uk63i")
