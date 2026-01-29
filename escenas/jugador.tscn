@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://co6e1dt4dqjrq"]
+[gd_scene load_steps=7 format=3 uid="uid://co6e1dt4dqjrq"]
 
 [ext_resource type="Script" uid="uid://bfq7xgw7hknja" path="res://escenas/jugador.gd" id="1_jpodt"]
 [ext_resource type="Texture2D" uid="uid://cn4kmtosbwygo" path="res://icon.svg" id="1_tml57"]
 [ext_resource type="AudioStream" uid="uid://cen65msp4phka" path="res://assets/sonidos/Linterna Prendida.wav" id="3_xutah"]
 [ext_resource type="AudioStream" uid="uid://dkxn4pmnc0fjj" path="res://assets/sonidos/Pasos Humano.wav" id="4_ovq70"]
+[ext_resource type="PackedScene" uid="uid://dcvypomevis2t" path="res://ui/hud.tscn" id="5_ovq70"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_omvyu"]
 radius = 0.8825493
@@ -37,3 +38,5 @@ stream = ExtResource("3_xutah")
 [node name="SonidoPasos" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_ovq70")
 pitch_scale = 2.0
+
+[node name="HUD" parent="." instance=ExtResource("5_ovq70")]

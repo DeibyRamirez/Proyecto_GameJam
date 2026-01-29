@@ -1,0 +1,114 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcvypomevis2t"]
+
+[ext_resource type="Script" uid="uid://b7ibxri5lwq3x" path="res://ui/hud.gd" id="1_276te"]
+[ext_resource type="Texture2D" uid="uid://cn4kmtosbwygo" path="res://icon.svg" id="1_rbyyf"]
+
+[node name="HUD" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_276te")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 849.0
+offset_top = 267.0
+offset_right = 889.0
+offset_bottom = 307.0
+scale = Vector2(7.370965, 9.001214)
+
+[node name="Panel2" type="Panel" parent="."]
+offset_left = 598.0
+offset_top = 14.000002
+offset_right = 638.0
+offset_bottom = 54.0
+scale = Vector2(13.440001, 5.964418)
+
+[node name="LabelInventario" type="Label" parent="."]
+offset_left = 15.0
+offset_top = 21.0
+offset_right = 226.0
+offset_bottom = 76.0
+theme_override_font_sizes/font_size = 40
+text = "Inventario"
+uppercase = true
+
+[node name="GridMascaras" type="GridContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 288.0
+offset_top = -290.0
+offset_right = 548.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+columns = 2
+
+[node name="M1" type="TextureRect" parent="GridMascaras"]
+layout_mode = 2
+texture = ExtResource("1_rbyyf")
+
+[node name="M2" type="TextureRect" parent="GridMascaras"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("1_rbyyf")
+
+[node name="M3" type="TextureRect" parent="GridMascaras"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("1_rbyyf")
+
+[node name="M4" type="TextureRect" parent="GridMascaras"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("1_rbyyf")
+
+[node name="GridLlaves" type="GridContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 30.0
+offset_top = 101.0
+offset_right = 575.0
+offset_bottom = 236.0
+grow_horizontal = 2
+columns = 4
+
+[node name="K1" type="TextureRect" parent="GridLlaves"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("1_rbyyf")
+stretch_mode = 2
+
+[node name="K2" type="TextureRect" parent="GridLlaves"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("1_rbyyf")
+
+[node name="K3" type="TextureRect" parent="GridLlaves"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("1_rbyyf")
+
+[node name="K4" type="TextureRect" parent="GridLlaves"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+texture = ExtResource("1_rbyyf")
+
+[node name="LabelMascara" type="Label" parent="."]
+offset_left = 889.0
+offset_top = 265.0
+offset_right = 1100.0
+offset_bottom = 320.0
+theme_override_font_sizes/font_size = 40
+text = "Mascaras"
+uppercase = true
+
+[node name="LabelLlave" type="Label" parent="."]
+offset_left = 617.0
+offset_top = 22.0
+offset_right = 828.0
+offset_bottom = 77.0
+theme_override_font_sizes/font_size = 40
+text = "Llaves"
+uppercase = true

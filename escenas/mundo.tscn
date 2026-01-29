@@ -8,7 +8,6 @@
 ambient_light_source = 3
 ambient_light_color = Color(0.6300362, 0.5256701, 0.23466969, 1)
 ambient_light_energy = 1.9
-fog_enabled = true
 
 [node name="Mundo" type="Node3D"]
 
@@ -23,12 +22,33 @@ environment = SubResource("Environment_1sur8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.239395, 1.3961712, -0.2677002)
 
 [node name="Llave" parent="." instance=ExtResource("2_6wjgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1554623, 1.546638, 6.7487793)
-
-[node name="Mascara" parent="." instance=ExtResource("3_glrvs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.596425, 1.6074649, 1.3475342)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1554623, 4.589912, 6.7487793)
 
 [node name="Luna" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.96445143, 0.26426023, 0, -0.26426023, 0.96445143, 8.91568, 18.601257, 11.918457)
+transform = Transform3D(1, 0, 0, 0, 0.96445143, 0.26426023, 0, -0.26426023, 0.96445143, 8.91568, 18.066437, 11.918457)
 light_color = Color(0.81960785, 0.8509804, 0.88235295, 1)
 light_energy = 0.2
+
+[node name="Mascara2" parent="." instance=ExtResource("3_glrvs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1553955, 1.308238, -8.908569)
+id_mascara = "M2"
+
+[node name="Mascara3" parent="." instance=ExtResource("3_glrvs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.614519, 1.2698741, 0.5876465)
+id_mascara = "M3"
+
+[node name="Mascara4" parent="." instance=ExtResource("3_glrvs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42119312, 1.0712949, 5.267212)
+id_mascara = "M4"
+
+[node name="Llave2" parent="." instance=ExtResource("2_6wjgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.655243, 4.2578735, -4.91626)
+id_llave = "K2"
+
+[node name="Llave3" parent="." instance=ExtResource("2_6wjgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.786316, 4.3016357, -3.404541)
+id_llave = "K3"
+
+[node name="Llave4" parent="." instance=ExtResource("2_6wjgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3323975, 4.213562, 8.466797)
+id_llave = "K4"
