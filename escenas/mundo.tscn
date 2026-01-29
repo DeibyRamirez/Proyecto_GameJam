@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://byhaghwppvfg3"]
+[gd_scene load_steps=10 format=3 uid="uid://byhaghwppvfg3"]
 
 [ext_resource type="PackedScene" uid="uid://co6e1dt4dqjrq" path="res://escenas/jugador.tscn" id="1_cdbbl"]
 [ext_resource type="PackedScene" uid="uid://c7d0vx73gcima" path="res://escenas/llave.tscn" id="2_6wjgb"]
-[ext_resource type="PackedScene" uid="uid://dr8o77vyl68lu" path="res://escenas/mascara.tscn" id="3_glrvs"]
+[ext_resource type="PackedScene" uid="uid://etnw8it2bkqk" path="res://escenas/Mascaras_nombradas/mascara_m_1.tscn" id="3_txhqv"]
+[ext_resource type="PackedScene" uid="uid://c4brm32o1ctvl" path="res://escenas/Mascaras_nombradas/mascara_m_2.tscn" id="4_mb57o"]
+[ext_resource type="PackedScene" uid="uid://ckfo7big0ls8i" path="res://escenas/Mascaras_nombradas/mascara_m_4.tscn" id="5_jh10v"]
+[ext_resource type="PackedScene" uid="uid://t8fhblwjs6wv" path="res://escenas/Mascaras_nombradas/mascara_m_3.tscn" id="6_jcqeh"]
+[ext_resource type="PackedScene" uid="uid://cau8rt06veo2x" path="res://escenas/Mascaras_nombradas/mascara_m_5.tscn" id="7_kckb2"]
+[ext_resource type="PackedScene" uid="uid://dgysk6qmel8uh" path="res://escenas/Mascaras_nombradas/mascara_m_6.tscn" id="8_ijldy"]
 
 [sub_resource type="Environment" id="Environment_1sur8"]
 ambient_light_source = 3
@@ -21,34 +26,38 @@ environment = SubResource("Environment_1sur8")
 [node name="Jugador" parent="." instance=ExtResource("1_cdbbl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.239395, 1.3961712, -0.2677002)
 
-[node name="Llave" parent="." instance=ExtResource("2_6wjgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1554623, 4.589912, 6.7487793)
-
 [node name="Luna" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.96445143, 0.26426023, 0, -0.26426023, 0.96445143, 8.91568, 18.066437, 11.918457)
 light_color = Color(0.81960785, 0.8509804, 0.88235295, 1)
 light_energy = 0.2
 
-[node name="Mascara2" parent="." instance=ExtResource("3_glrvs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1553955, 1.308238, -8.908569)
-id_mascara = "M2"
+[node name="Mascara_M1" parent="." instance=ExtResource("3_txhqv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.989624, 1.3981917, 1.6801987)
 
-[node name="Mascara3" parent="." instance=ExtResource("3_glrvs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.614519, 1.2698741, 0.5876465)
-id_mascara = "M3"
+[node name="Mascara_M2" parent="." instance=ExtResource("4_mb57o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.00914, 1.5179825, -4.0358887)
 
-[node name="Mascara4" parent="." instance=ExtResource("3_glrvs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42119312, 1.0712949, 5.267212)
-id_mascara = "M4"
+[node name="Mascara_M4" parent="." instance=ExtResource("5_jh10v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3947754, 1.3960114, -5.0445557)
+
+[node name="Mascara_M3" parent="." instance=ExtResource("6_jcqeh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.644867, 1.3966572, 5.359741)
+
+[node name="Mascara_M5" parent="." instance=ExtResource("7_kckb2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.472473, 1.4015741, 6.101074)
+visible = false
+
+[node name="Mascara_M6" parent="." instance=ExtResource("8_ijldy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.90856934, 1.4028887, -6.1956787)
+visible = false
+
+[node name="Llave" parent="." instance=ExtResource("2_6wjgb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3703613, 1.3987732, 6.8079834)
 
 [node name="Llave2" parent="." instance=ExtResource("2_6wjgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.655243, 4.2578735, -4.91626)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3884277, 1.3284397, -5.204468)
 id_llave = "K2"
 
 [node name="Llave3" parent="." instance=ExtResource("2_6wjgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.786316, 4.3016357, -3.404541)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2530518, 1.3284397, -0.8730469)
 id_llave = "K3"
-
-[node name="Llave4" parent="." instance=ExtResource("2_6wjgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.3323975, 4.213562, 8.466797)
-id_llave = "K4"

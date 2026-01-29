@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://co6e1dt4dqjrq"]
 
-[ext_resource type="Script" uid="uid://bfq7xgw7hknja" path="res://escenas/jugador.gd" id="1_jpodt"]
+[ext_resource type="Script" uid="uid://bfq7xgw7hknja" path="res://jugador.gd" id="1_jpodt"]
 [ext_resource type="Texture2D" uid="uid://cn4kmtosbwygo" path="res://assets/Imagenes/icon.svg" id="1_tml57"]
 [ext_resource type="AudioStream" uid="uid://cen65msp4phka" path="res://assets/sonidos/Linterna Prendida.wav" id="3_xutah"]
 [ext_resource type="AudioStream" uid="uid://dkxn4pmnc0fjj" path="res://assets/sonidos/Pasos Humano.wav" id="4_ovq70"]

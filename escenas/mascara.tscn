@@ -1,18 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dr8o77vyl68lu"]
+[gd_scene load_steps=3 format=3 uid="uid://dr8o77vyl68lu"]
 
-[ext_resource type="Texture2D" uid="uid://3kkvj2hu67pm" path="res://assets/Imagenes/mascara.jpg" id="1_0n0w3"]
 [ext_resource type="Script" uid="uid://bc5b55p3rik3r" path="res://escenas/mascara.gd" id="1_psfvx"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_ygudf"]
-radius = 0.84432876
+[sub_resource type="BoxShape3D" id="BoxShape3D_v0tqc"]
+size = Vector3(0.3203125, 1.8134918, 1.4934692)
 
 [node name="Mascara" type="Area3D" groups=["interactuable", "mascaras"]]
 script = ExtResource("1_psfvx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_ygudf")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.040039063, -0.0033187866, -0.0066833496)
+shape = SubResource("BoxShape3D_v0tqc")
 
-[node name="Sprite3D" type="Sprite3D" parent="." groups=["interactuable", "mascaras"]]
-transform = Transform3D(0.15175758, 0, 0, 0, 0.17227578, 0, 0, 0, 1, 0, 0, 0)
-billboard = 2
-texture = ExtResource("1_0n0w3")
+[node name="Visual" type="Node3D" parent="." groups=["interactuable", "mascaras"]]
