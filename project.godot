@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="PoryectoGameJam"
-run/main_scene="uid://byhaghwppvfg3"
+run/main_scene="uid://bl1oekq51sdp5"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://assets/Imagenes/icon.svg"
 

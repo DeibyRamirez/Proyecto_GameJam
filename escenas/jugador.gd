@@ -14,6 +14,7 @@ extends CharacterBody3D
 @onready var hud = $HUD # Asegúrate de que el HUD sea hijo del jugador o esté en la escena
 @onready var interfaz_fija = $InterfazPermanente # O como hayas nombrado el nuevo CanvasLayer
 @onready var icono_linterna = $InterfazPermanente/IconoLinterna
+@onready var interzar_salir = $Salir
 
 
 # --- Precarga de imágenes ---
@@ -36,6 +37,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	hud.visible = false
+	interzar_salir.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event):
@@ -89,6 +91,12 @@ func _unhandled_input(event):
 			else:
 				# Si se cierra, volvemos a atrapar el ratón para jugar
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+				
+	# Salir del juego
+	if event.is_action_pressed("ui_cancel"): # Por defecto es la tecla ESC
+		interzar_salir.visible = true
+		get_tree().paused = true
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(delta):
 	if not is_on_floor():

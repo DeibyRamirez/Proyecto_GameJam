@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dcvypomevis2t"]
 
-[ext_resource type="Script" uid="uid://b7ibxri5lwq3x" path="res://ui/hud.gd" id="1_276te"]
+[ext_resource type="Script" uid="uid://b7ibxri5lwq3x" path="res://escenas/ui/hud.gd" id="1_276te"]
 [ext_resource type="Texture2D" uid="uid://du2tkm2sysar" path="res://assets/Imagenes/Fondo.png" id="2_ff8ar"]
 [ext_resource type="Texture2D" uid="uid://dlugl08sr7mm" path="res://assets/Imagenes/Mascaras/M1.png" id="3_m0eg6"]
 [ext_resource type="Texture2D" uid="uid://b67mdlsgby4oq" path="res://assets/Imagenes/Mascaras/M2.png" id="4_b00kl"]
