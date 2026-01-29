@@ -12,6 +12,14 @@ extends CharacterBody3D
 
 # Canvas Layer
 @onready var hud = $HUD # Asegúrate de que el HUD sea hijo del jugador o esté en la escena
+@onready var interfaz_fija = $InterfazPermanente # O como hayas nombrado el nuevo CanvasLayer
+@onready var icono_linterna = $InterfazPermanente/IconoLinterna
+
+
+# --- Precarga de imágenes ---
+var img_linterna_on = preload("res://assets/Imagenes/linterna on .png")
+var img_linterna_off = preload("res://assets/Imagenes/linterna.png")
+
 
 const SPEED = 4.0
 const JUMP_VELOCITY = 4.5
@@ -56,6 +64,14 @@ func _unhandled_input(event):
 		linterna.visible = !linterna.visible
 		sonido_linterna.play() # Reproduce el click
 		
+		# CAMBIO DE ICONO:
+		if linterna.visible:
+			icono_linterna.texture = img_linterna_on
+			icono_linterna.modulate = Color(1, 1, 0.5) # Un tono amarillento brillante
+		else: 
+			icono_linterna.texture = img_linterna_off
+			icono_linterna.modulate = Color(1, 1, 1, 0.5) # Blanco semitransparente
+
 		# Opcional: Sonido de click
 		print("Linterna: ", linterna.visible)
 		

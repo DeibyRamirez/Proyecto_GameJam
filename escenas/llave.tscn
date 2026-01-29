@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c7d0vx73gcima"]
 
 [ext_resource type="Script" uid="uid://w5sl2oecqchy" path="res://escenas/llave.gd" id="1_w2chs"]
-[ext_resource type="Texture2D" uid="uid://bb6p0inh3jbe0" path="res://assets/llave.jpg" id="2_w2chs"]
+[ext_resource type="Texture2D" uid="uid://bb6p0inh3jbe0" path="res://assets/Imagenes/llave.jpg" id="2_w2chs"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_w2chs"]
 radius = 0.84948015

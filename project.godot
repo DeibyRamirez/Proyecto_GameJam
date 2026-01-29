@@ -13,7 +13,7 @@ config_version=5
 config/name="PoryectoGameJam"
 run/main_scene="uid://byhaghwppvfg3"
 config/features=PackedStringArray("4.5", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://assets/Imagenes/icon.svg"
 
 [input]
 
