@@ -15,7 +15,7 @@ func _on_button_pressed() -> void:
 		await get_tree().create_timer(3.0).timeout
 		
 		# 3. Quitar Advertencia y preparar Video
-		pantalla_info.ocultar_pantalla() 
+		pantalla_info.ocultar_pantalla()
 		
 		# 4. Reproducir Video
 		# Accedemos al VideoStreamPlayer dentro de tu Canvas

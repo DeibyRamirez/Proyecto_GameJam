@@ -19,6 +19,7 @@
 ambient_light_source = 3
 ambient_light_color = Color(0.6300362, 0.5256701, 0.23466969, 1)
 ambient_light_energy = 1.9
+fog_enabled = true
 fog_light_color = Color(0.5921629, 0.6260332, 0.67871773, 1)
 fog_light_energy = 5.0
 fog_density = 0.03
@@ -72,7 +73,7 @@ _data = {
 environment = SubResource("Environment_1sur8")
 
 [node name="Jugador" parent="." instance=ExtResource("1_cdbbl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.239395, 1.3961712, -0.2677002)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 7)
 
 [node name="Luna" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.96445143, 0.26426023, 0, -0.26426023, 0.96445143, 8.91568, 18.601257, 11.918457)
@@ -115,10 +116,10 @@ volume_db = -4.0
 autoplay = true
 
 [node name="Mascara_M1" parent="." instance=ExtResource("5_jcqeh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.809659, 2.915571, 10.117334)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -14.257443, 2.8884752, -2.0579922)
 
 [node name="Mascara_M2" parent="." instance=ExtResource("6_kckb2")]
-transform = Transform3D(-0.9999997, 0, 0.00073304964, 0, 1, 0, -0.00073304964, 0, -0.9999997, -7.416215, 4.233363, 5.5828204)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.5108914, 3.6203666, -4.256326)
 
 [node name="Mascara_M3" parent="." instance=ExtResource("7_ijldy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.915571, -1.9792391)
@@ -133,7 +134,7 @@ transform = Transform3D(0.8521108, 0.52336144, 0, -0.52336144, 0.8521108, 0, 0, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7902064, 2.9198058, 0.20918262)
 
 [node name="Llave" parent="." instance=ExtResource("2_6wjgb")]
-transform = Transform3D(0.010893602, -0.28730807, 0.085646965, 0.29974088, 0.012170248, 0.0027012278, -0.006061431, 0.08547488, 0.28750184, 4.499611, 0.60608137, -13.5767765)
+transform = Transform3D(0.010893602, -0.28730807, 0.085646965, 0.29974088, 0.012170248, 0.0027012278, -0.006061431, 0.08547488, 0.28750184, 3.8519807, 0.60608137, -13.637147)
 
 [node name="Llave2" parent="." instance=ExtResource("2_6wjgb")]
 transform = Transform3D(0.103716776, -0.03206195, -0.27966917, 0.08000864, 0.28911334, -0.0034730127, 0.26989147, -0.073385805, 0.10850385, -3.8588586, 2.9992263, 9.428105)
@@ -144,7 +145,7 @@ transform = Transform3D(-0.10981761, -0.02598204, 0.16512123, -0.046047304, 0.19
 id_llave = "K3"
 
 [node name="Llave4" parent="." instance=ExtResource("2_6wjgb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5080376, 2.1777396, -10.796765)
+transform = Transform3D(3.821371e-16, 8.742278e-09, 0.2, 0.2, -8.742278e-09, 0, 8.742278e-09, 0.2, -8.742278e-09, -0.25561035, 0.20836377, -11.068547)
 id_llave = "K4"
 
 [node name="Informacion" parent="." instance=ExtResource("12_kckb2")]
@@ -158,8 +159,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.628058, 5.4109817, 10.020
 size = Vector3(3.9351196, 0.5, 5.526245)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1878047, 5.416571, -3.0488586)
-size = Vector3(28.832764, 0.5, 21.424744)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15972853, 5.416571, -3.5000591)
+size = Vector3(28.888916, 0.5, 22.327145)
 
 [node name="Silla" parent="." instance=ExtResource("13_ijldy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.352225, 0.16045618, -13.525925)
@@ -180,4 +181,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.669507, 0.16045606, -4.086
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.163469, 2.0982728, -3.4190154)
 
 [node name="Calabera2" parent="." instance=ExtResource("14_2q7jt")]
-transform = Transform3D(0.049163565, 0, 0.9987908, 0, 1, 0, -0.9987908, 0, 0.049163565, -14.336867, 0.25457633, 5.0848475)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 9.520127, 0.25457633, -0.67633724)

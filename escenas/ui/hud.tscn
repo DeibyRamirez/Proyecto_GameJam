@@ -65,44 +65,48 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 13.0
-offset_top = -273.0
-offset_right = 545.0
-offset_bottom = -13.0
+offset_left = -7.0
+offset_top = -303.0
+offset_right = 931.0
+offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(0.6, 0.6)
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
 columns = 4
 
-[node name="M1" type="TextureRect" parent="GridMascaras"]
-custom_minimum_size = Vector2(130, 130)
+[node name="M1" type="Button" parent="GridMascaras"]
+custom_minimum_size = Vector2(220, 300)
 layout_mode = 2
-texture = ExtResource("3_m0eg6")
-expand_mode = 1
-stretch_mode = 5
+icon = ExtResource("3_m0eg6")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="M2" type="TextureRect" parent="GridMascaras"]
-modulate = Color(0, 0, 0, 1)
-custom_minimum_size = Vector2(130, 130)
+[node name="M2" type="Button" parent="GridMascaras"]
+custom_minimum_size = Vector2(220, 300)
 layout_mode = 2
-texture = ExtResource("4_b00kl")
-expand_mode = 1
-stretch_mode = 5
+icon = ExtResource("4_b00kl")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="M3" type="TextureRect" parent="GridMascaras"]
-modulate = Color(0, 0, 0, 1)
-custom_minimum_size = Vector2(130, 130)
+[node name="M3" type="Button" parent="GridMascaras"]
+custom_minimum_size = Vector2(220, 300)
 layout_mode = 2
-texture = ExtResource("5_so1yu")
-expand_mode = 1
-stretch_mode = 5
+icon = ExtResource("5_so1yu")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="M4" type="TextureRect" parent="GridMascaras"]
-modulate = Color(0, 0, 0, 1)
-custom_minimum_size = Vector2(130, 130)
+[node name="M4" type="Button" parent="GridMascaras"]
+custom_minimum_size = Vector2(220, 300)
 layout_mode = 2
-texture = ExtResource("6_65xic")
-expand_mode = 1
-stretch_mode = 5
+icon = ExtResource("6_65xic")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="GridLlaves" type="GridContainer" parent="."]
 anchors_preset = 5

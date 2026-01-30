@@ -1,2 +1,7 @@
 extends Area3D
 @export var id_llave: String = "K1" # En el inspector, cambia esto a K1, K2, K3 o K4
+@onready var brillo_nodo = $Brillo # Asegúrate de que el nombre coincida con el paso 1
+
+func set_highlight(valor: bool):
+	if brillo_nodo:
+		brillo_nodo.visible = valor

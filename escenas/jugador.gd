@@ -39,6 +39,8 @@ var mascaras = 0
 var inventario_llaves = []
 var inventario_mascaras = []
 
+var mascara_equipada_id: String = "M1" # <--- AÑADE ESTA LÍNEA (Variable NUEVA)
+
 # Mascara locooooo
 var esta_usando_mascara: bool = false
 var puede_usar_mascara: bool = true # Para el cooldown
@@ -78,8 +80,13 @@ func _unhandled_input(event):
 				elif objeto.is_in_group("mascaras"):
 					recoger_mascara(objeto)
 	
-	# --- LÓGICA DE LA MÁSCARA (NUEVA Y MEJORADA) ---
+	# --- LÓGICA DE LA MÁSCARA ---
 	if event.is_action_pressed("tecla_mascara"):
+		# NUEVA CONDICIÓN: Solo puede usar la máscara si YA TIENE la M1 recogida
+		if not inventario_mascaras.has("M1"):
+			print("Aún no tienes la máscara base (M1) para usar esta habilidad.")
+			return
+
 		if not hud.visible:
 			if esta_usando_mascara:
 				_quitar_mascara()
@@ -107,6 +114,11 @@ func _unhandled_input(event):
 	
 	# Lógica para abrir/cerrar el inventario
 	if event.is_action_pressed("abrir_inventario"):
+		# NUEVA CONDICIÓN: Si tiene la máscara puesta, no puede abrir el inventario
+		if esta_usando_mascara:
+			print("No puedes abrir el inventario con la máscara puesta.")
+			return # Bloquea el resto de la función
+			
 		if hud:
 			# Cambiamos la visibilidad (si es true pasa a false y viceversa)
 			hud.visible = !hud.visible
@@ -167,15 +179,26 @@ func _physics_process(delta):
 		if sonido_pasos.playing:
 			sonido_pasos.stop()
 			
-			
+# Mascaras con visiones....
 func _poner_mascara():
 	esta_usando_mascara = true
 	tiempo_mascara_actual = 0.0
 	if sonido_mascara: sonido_mascara.play()
 	if sonido_respiracion: sonido_respiracion.play()
 	if anim_mascara: anim_mascara.play("poner_mascara")
-	print("Máscara puesta - Aire limitado")
 	
+	# --- ACTIVAR VISIONES SEGÚN EL ID SELECCIONADO ---
+	match mascara_equipada_id:
+		"M2":
+			activar_vision_grupo("grupo_monstruo", true)
+		"M3":
+			activar_vision_grupo("grupo_mascaras", true)
+		"M4":
+			activar_vision_grupo("grupo_llaves", true)
+		"M1":
+			print("M1 no tiene visión especial")
+	
+	print("Máscara puesta: ", mascara_equipada_id)
 
 func _quitar_mascara():
 	esta_usando_mascara = false
@@ -183,12 +206,19 @@ func _quitar_mascara():
 	if sonido_respiracion: sonido_respiracion.stop()
 	if anim_mascara: anim_mascara.play_backwards("poner_mascara")
 	
+	# --- APAGAR TODAS LAS VISIONES ---
+	activar_vision_grupo("grupo_monstruo", false)
+	activar_vision_grupo("grupo_mascaras", false)
+	activar_vision_grupo("grupo_llaves", false)
+	
 	# Iniciar Cooldown
 	puede_usar_mascara = false
-	print("Máscara quitada - Iniciando Cooldown")
 	await get_tree().create_timer(TIEMPO_COOLDOWN).timeout
 	puede_usar_mascara = true
-	print("Máscara lista para usar de nuevo")
+
+# Función auxiliar para encender/apagar los brillos
+func activar_vision_grupo(nombre_grupo: String, activado: bool):
+	get_tree().call_group(nombre_grupo, "set_highlight", activado)
 	
 
 func _gestionar_sonido_pasos():
@@ -237,3 +267,7 @@ func recoger_mascara(objeto):
 		# Llamamos a la función del HUD pasando la lista actualizada
 		hud.actualizar_visual_inventario(inventario_mascaras)
 	objeto.queue_free()
+
+
+func _on_hud_mascara_seleccionada(id_mascara):
+	mascara_equipada_id = id_mascara # Aquí guardas M2, M3 o M4

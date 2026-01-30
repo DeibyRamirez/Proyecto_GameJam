@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://xtea6lpl1r8"]
+[gd_scene load_steps=13 format=4 uid="uid://xtea6lpl1r8"]
 
 [ext_resource type="Script" uid="uid://dqx5ii203u06g" path="res://escenas/moustro.gd" id="1_15s4m"]
 [ext_resource type="AudioStream" uid="uid://b51u3xv03fi2l" path="res://assets/sonidos/Jumcrek.wav" id="2_uk63i"]
-[ext_resource type="Animation" uid="uid://cmx10jb10wy0d" path="res://assets/Modelos3D/Monstruo/mixamo_com.res" id="3_nqw2a"]
+[ext_resource type="Animation" uid="uid://bql4xsjvgntvk" path="res://assets/Modelos3D/Monstruo/mixamo_com.res" id="3_nqw2a"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7oex1"]
 
@@ -520,7 +520,17 @@ _data = {
 &"mixamo_com": ExtResource("3_nqw2a")
 }
 
-[node name="Moustro" type="CharacterBody3D" node_paths=PackedStringArray("anim_player_susto", "anim_player_mixamo")]
+[sub_resource type="SphereMesh" id="SphereMesh_nqw2a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oww8g"]
+transparency = 1
+no_depth_test = true
+albedo_color = Color(0.9411765, 0.15686275, 0.15686275, 1)
+emission_enabled = true
+emission = Color(0.9411765, 0.15686275, 0.15686275, 1)
+emission_energy_multiplier = 2.0
+
+[node name="Moustro" type="CharacterBody3D" node_paths=PackedStringArray("anim_player_susto", "anim_player_mixamo") groups=["grupo_monstruo"]]
 script = ExtResource("1_15s4m")
 anim_player_susto = NodePath("AnimationPlayer")
 anim_player_mixamo = NodePath("AnimationPlayer2")
@@ -949,3 +959,9 @@ libraries = {
 libraries = {
 &"": SubResource("AnimationLibrary_xc66g")
 }
+
+[node name="Brillo" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.10217, 0)
+visible = false
+mesh = SubResource("SphereMesh_nqw2a")
+surface_material_override/0 = SubResource("StandardMaterial3D_oww8g")

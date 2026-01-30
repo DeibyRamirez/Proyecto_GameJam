@@ -2,10 +2,12 @@ extends CharacterBody3D
 
 const SPEED = 2.0
 const ATTACK_RANGE = 1.5
-const OFFICE_POSITION = Vector3(0, 1, 0)
+const OFFICE_POSITION = Vector3(-3, 1, 7)
 
 @onready var navAgent = $NavigationAgent3D
 @onready var snd_attack = $SndAttack 
+
+@onready var brillo_nodo = $Brillo # Asegúrate de que el nombre coincida con el paso 1
 
 # --- REFERENCIAS A LOS 2 ANIMATION PLAYERS ---
 # El que usas para el "Susto" manual
@@ -122,11 +124,11 @@ func _play_attack_sequence():
 	_teleport_positions()
 	
 	# 4. TIEMPO PARA VER LA IMAGEN
-	await get_tree().create_timer(4.0).timeout
+	await get_tree().create_timer(3.0).timeout
 	fade_anim_player.play_backwards("fade_out")
 	await fade_anim_player.animation_finished
 	is_attacking = false
-	
+		
 	# 5. OCULTAR INFO Y REINICIAR IA
 	if pantalla_info:
 		pantalla_info.ocultar_pantalla()
@@ -137,3 +139,7 @@ func _teleport_positions():
 	global_transform.origin = start_position
 	navAgent.target_position = start_position
 	print("Posiciones reiniciadas.")
+
+func set_highlight(valor: bool):
+	if brillo_nodo:
+		brillo_nodo.visible = valor

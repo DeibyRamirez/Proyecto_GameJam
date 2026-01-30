@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7d0vx73gcima"]
+[gd_scene load_steps=6 format=3 uid="uid://c7d0vx73gcima"]
 
 [ext_resource type="Script" uid="uid://w5sl2oecqchy" path="res://escenas/llave.gd" id="1_w2chs"]
 [ext_resource type="PackedScene" uid="uid://b47msvy5fi65t" path="res://assets/Modelos3D/Llave/base.glb" id="2_w2chs"]
@@ -6,7 +6,17 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_urw3d"]
 size = Vector3(1, 1.8305492, 1)
 
-[node name="Llave" type="Area3D" groups=["interactuable", "llaves"]]
+[sub_resource type="SphereMesh" id="SphereMesh_w2chs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_urw3d"]
+transparency = 1
+no_depth_test = true
+albedo_color = Color(0.93239874, 0.93094224, 7.70092e-07, 1)
+emission_enabled = true
+emission = Color(0.93333334, 0.92941177, 0, 1)
+emission_energy_multiplier = 2.0
+
+[node name="Llave" type="Area3D" groups=["grupo_llaves", "interactuable", "llaves"]]
 script = ExtResource("1_w2chs")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -16,5 +26,11 @@ shape = SubResource("BoxShape3D_urw3d")
 [node name="Visual" type="Node3D" parent="."]
 
 [node name="base" parent="Visual" groups=["interactuable", "llaves"] instance=ExtResource("2_w2chs")]
+
+[node name="Brillo" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.58368635, 0, 0, 0, 0.52306956, 0, 0, 0, 0.62460726, 0, 1.3956456, 0)
+visible = false
+mesh = SubResource("SphereMesh_w2chs")
+surface_material_override/0 = SubResource("StandardMaterial3D_urw3d")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
