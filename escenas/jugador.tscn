@@ -1,24 +1,67 @@
-[gd_scene load_steps=9 format=3 uid="uid://co6e1dt4dqjrq"]
+[gd_scene load_steps=16 format=3 uid="uid://co6e1dt4dqjrq"]
 
 [ext_resource type="Script" uid="uid://bfq7xgw7hknja" path="res://escenas/jugador.gd" id="1_jpodt"]
-[ext_resource type="Texture2D" uid="uid://cn4kmtosbwygo" path="res://assets/Imagenes/icon.svg" id="1_tml57"]
 [ext_resource type="AudioStream" uid="uid://cen65msp4phka" path="res://assets/sonidos/Linterna Prendida.wav" id="3_xutah"]
 [ext_resource type="AudioStream" uid="uid://dkxn4pmnc0fjj" path="res://assets/sonidos/Pasos Humano.wav" id="4_ovq70"]
 [ext_resource type="PackedScene" uid="uid://dcvypomevis2t" path="res://escenas/ui/hud.tscn" id="5_gjfif"]
 [ext_resource type="PackedScene" uid="uid://b1iopu0vm5gvn" path="res://escenas/ui/interfaz_permanente.tscn" id="6_4mp40"]
 [ext_resource type="PackedScene" uid="uid://vskyvrxmmbh1" path="res://escenas/ui/salir.tscn" id="7_e85mw"]
+[ext_resource type="AudioStream" uid="uid://cs7ib27riuu80" path="res://assets/sonidos/Coger Mascaras.wav" id="8_e85mw"]
+[ext_resource type="AudioStream" uid="uid://dtl2mhg1g5qte" path="res://assets/sonidos/Respiracion Rapida.wav" id="9_di65y"]
+[ext_resource type="PackedScene" path="res://escenas/ui/Mascara_Puesta.tscn" id="9_gheh0"]
+[ext_resource type="Texture2D" uid="uid://cn4kmtosbwygo" path="res://icon.svg" id="10_gheh0"]
+[ext_resource type="Texture2D" uid="uid://ewq1c4nfcybk" path="res://assets/Modelos3D/Mascaras/Mascara del Juego.png" id="11_di65y"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_omvyu"]
 radius = 0.67354244
 
-[node name="Jugador" type="CharacterBody3D"]
+[sub_resource type="Animation" id="Animation_cmnay"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VistaMascara:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a2win"]
+resource_name = "poner_mascara"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VistaMascara:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.7882353)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6dgn1"]
+_data = {
+&"RESET": SubResource("Animation_cmnay"),
+&"poner_mascara": SubResource("Animation_a2win")
+}
+
+[node name="Jugador" type="CharacterBody3D" node_paths=PackedStringArray("sonido_mascara", "anim_mascara", "vista_mascara")]
 script = ExtResource("1_jpodt")
+sonido_mascara = NodePath("SonidoMascara")
+anim_mascara = NodePath("CanvasLayer/AnimMascara")
+vista_mascara = NodePath("CanvasLayer/VistaMascara")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_omvyu")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-texture = ExtResource("1_tml57")
+texture = ExtResource("10_gheh0")
 
 [node name="Cabeza" type="Node3D" parent="."]
 
@@ -30,10 +73,9 @@ target_position = Vector3(0, -1, -3)
 collide_with_areas = true
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Cabeza/Camera3D"]
-light_color = Color(0.59597194, 0.5866971, 5.7756904e-07, 1)
 shadow_enabled = true
-spot_range = 16.837
-spot_angle = 30.0
+spot_range = 15.0
+spot_angle = 35.0
 
 [node name="SonidoLinterna" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_xutah")
@@ -42,8 +84,30 @@ stream = ExtResource("3_xutah")
 stream = ExtResource("4_ovq70")
 pitch_scale = 2.0
 
+[node name="CanvasLayer" parent="." instance=ExtResource("9_gheh0")]
+
+[node name="VistaMascara" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_di65y")
+
+[node name="AnimMascara" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_6dgn1")
+}
+
 [node name="HUD" parent="." instance=ExtResource("5_gjfif")]
 
 [node name="InterfazPermanente" parent="." instance=ExtResource("6_4mp40")]
 
 [node name="Salir" parent="." instance=ExtResource("7_e85mw")]
+
+[node name="SonidoMascara" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_e85mw")
+
+[node name="SonidoRespiracion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_di65y")

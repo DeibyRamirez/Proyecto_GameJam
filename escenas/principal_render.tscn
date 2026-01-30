@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://du421u87xh7i3"]
+[gd_scene load_steps=10 format=3 uid="uid://du421u87xh7i3"]
 
 [ext_resource type="PackedScene" uid="uid://baihh1qcfgkpo" path="res://assets/Modelos3D/Linterna/Linterna.glb" id="1_1odni"]
 [ext_resource type="Script" uid="uid://b62nqqjqvgjgf" path="res://escenas/principal_render.gd" id="1_68ufw"]
@@ -12,20 +12,29 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Environment" id="Environment_fy53x"]
 ambient_light_source = 3
+fog_enabled = true
+fog_light_energy = 0.0
+fog_density = 0.0
+fog_sky_affect = 0.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_vfcrt"]
+auto_exposure_enabled = true
+auto_exposure_scale = 0.1
 
 [node name="PrincipalRender" type="Node3D"]
 script = ExtResource("1_68ufw")
 
 [node name="Suelo" type="CSGBox3D" parent="."]
+transform = Transform3D(0.90847903, 0, -0.4179305, 0, 1, 0, 0.4179305, 0, 0.90847903, 0.7385869, 0, -0.083462)
 size = Vector3(10, 1, 10)
 material = SubResource("StandardMaterial3D_68ufw")
 
 [node name="Muro" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.001912117, 2.538208, -0.47372437)
+transform = Transform3D(0.90847903, -0.4179305, 1.8268322e-08, 0, -4.371139e-08, -1, 0.4179305, 0.90847903, -3.971088e-08, 0.93830794, 2.538208, -0.5130316)
 size = Vector3(10, 1, 5)
 
 [node name="Linterna" parent="." instance=ExtResource("1_1odni")]
-transform = Transform3D(-0.74202013, 0.0981824, -0.6631488, -0.03362915, 0.98251957, 0.18309554, 0.6695337, 0.15816182, -0.7257476, 4.1514664, 0.3748474, 3.9891357)
+transform = Transform3D(-0.72614795, 0.101856954, -0.67995167, -0.033629168, 0.98251957, 0.18309559, 0.68671566, 0.15582077, -0.71002924, 3.7413335, 0.38146734, 2.3857636)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Linterna"]
 transform = Transform3D(-0.9073146, -0.39329544, -0.14865637, -0.39343417, 0.9188722, -0.029730208, 0.14828873, 0.031511925, -0.988442, -0.015416622, 0.45042157, 0.083937645)
@@ -34,14 +43,14 @@ spot_attenuation = 0.65
 script = ExtResource("2_68ufw")
 
 [node name="Mascarass" parent="." instance=ExtResource("2_63lhq")]
-transform = Transform3D(0.2566843, 0, 0, 0, 0.2566843, 0, 0, 0, 1, -0.60611534, 3.398365, 0.089767456)
+transform = Transform3D(0.2331923, 0, -0.41793054, 0, 0.2566843, 0, 0.107276194, 0, 0.90847903, 0.15042734, 3.398365, -0.2552241)
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.818966, 0.90093994, -0.6272583)
+transform = Transform3D(0.90847903, 0, -0.4179305, 0, 1, 0, 0.4179305, 0, 0.90847903, 2.0006795, 0.6822729, 3.918116)
 light_specular = 3.894
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8419514, 1.1943054, -0.31362915)
+transform = Transform3D(0.90847903, 0, -0.4179305, 0, 1, 0, 0.4179305, 0, 0.90847903, -3.3117795, 0.24210072, 1.5258744)
 light_specular = 3.894
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -52,64 +61,75 @@ environment = SubResource("Environment_fy53x")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
-texture_filter = 1
+texture_filter = 2
 offset_right = 350.0
 offset_bottom = 200.0
 scale = Vector2(3.299142, 3.259142)
+stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
 handle_input_locally = false
-msaa_3d = 2
+msaa_3d = 3
+screen_space_aa = 1
+use_taa = true
+scaling_3d_scale = 2.0
+texture_mipmap_bias = -0.5
 size = Vector2i(350, 200)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="CanvasLayer/SubViewportContainer/SubViewport"]
-transform = Transform3D(0.9365238, 0.073201686, -0.34287727, -0.08152943, 0.99662167, -0.00991569, 0.34099305, 0.037240863, 0.93932796, -1.0082512, 2.4171448, 6.4521484)
+transform = Transform3D(0.84188986, 0.08419008, -0.5330418, -0.07812684, 0.9963644, 0.033974484, 0.53396416, 0.013042088, 0.8454066, -2.263669, 2.511345, 3.0625143)
+attributes = SubResource("CameraAttributesPractical_vfcrt")
 
 [node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
-offset_left = 485.99997
-offset_top = 533.0
-offset_right = 1106.0
-offset_bottom = 817.0
+offset_left = 999.9999
+offset_top = 554.0
+offset_right = 1619.9999
+offset_bottom = 838.0
 scale = Vector2(0.20178756, 0.23960094)
 texture = ExtResource("5_fy53x")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-offset_left = 19.999998
-offset_top = 534.0
-offset_right = 640.0
-offset_bottom = 818.0
+offset_left = 20.000061
+offset_top = 560.0
+offset_right = 640.0001
+offset_bottom = 844.0
 scale = Vector2(0.20178756, 0.23960094)
 texture = ExtResource("5_fy53x")
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 495.0
-offset_top = 37.0
-offset_right = 1134.0
-offset_bottom = 106.0
+offset_left = 268.99997
+offset_top = 448.7955
+offset_right = 908.0
+offset_bottom = 517.79553
+rotation = -0.12047197
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(18.892157, 18.892157, 18.892157, 1)
 theme_override_font_sizes/font_size = 50
 text = "MUSEUM OF SILENT FACES"
+uppercase = true
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
-offset_left = 490.00003
-offset_top = 48.0
-offset_right = 530.0
-offset_bottom = 88.0
+offset_left = 264.0
+offset_top = 459.7955
+offset_right = 303.99997
+offset_bottom = 499.7955
+rotation = -0.12047197
 scale = Vector2(16.345152, 1.3114283)
 
 [node name="Button" type="Button" parent="CanvasLayer"]
-offset_left = 500.0
-offset_top = 543.0
-offset_right = 600.0
-offset_bottom = 593.0
+offset_left = 1014.0
+offset_top = 564.0
+offset_right = 1114.0
+offset_bottom = 614.0
 theme_override_font_sizes/font_size = 30
 text = "JUGAR"
 
 [node name="Button2" type="Button" parent="CanvasLayer"]
-offset_left = 32.0
-offset_top = 542.0
-offset_right = 132.0
-offset_bottom = 592.0
+offset_left = 32.00006
+offset_top = 568.0
+offset_right = 132.00006
+offset_bottom = 618.0
 theme_override_font_sizes/font_size = 30
 text = "SALIR"
 

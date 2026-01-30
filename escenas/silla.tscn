@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://paidk7cq4w0m"]
+
+[ext_resource type="PackedScene" uid="uid://bc26nitspsjjm" path="res://assets/Modelos3D/Objetos/Silla.glb" id="1_nehj0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ksujh"]
+size = Vector3(1.8371277, 0.4676361, 0.4423828)
+
+[node name="Silla" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0002593994, 0.21109772, 0)
+shape = SubResource("BoxShape3D_ksujh")
+
+[node name="Silla" parent="." instance=ExtResource("1_nehj0")]

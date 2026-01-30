@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfviangtvso0n"]
+
+[ext_resource type="PackedScene" uid="uid://bgtwmmi08qyhc" path="res://assets/Modelos3D/Objetos/Calabera.glb" id="1_ov083"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_arlbk"]
+size = Vector3(1.6987915, 1.8394165, 1.7410889)
+
+[node name="Calabera" type="RigidBody3D"]
+
+[node name="Calabera" parent="." instance=ExtResource("1_ov083")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.021148682, 0.8704529, -6.1035156e-05)
+shape = SubResource("BoxShape3D_arlbk")

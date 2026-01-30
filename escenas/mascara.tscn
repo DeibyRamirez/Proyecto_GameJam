@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://crbpjm4l3qnb" path="res://escenas/mascara.gd" id="1_0n0w3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ygudf"]
-size = Vector3(1, 1.965271, 1)
+size = Vector3(0.36819458, 1.965271, 1)
 
 [node name="Mascara" type="Area3D" groups=["interactuable", "mascaras"]]
 script = ExtResource("1_0n0w3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04, 0.26228932, -0.007)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0035333335, 0.26228932, -0.007)
 shape = SubResource("BoxShape3D_ygudf")
 
 [node name="Visual" type="Node3D" parent="." groups=["interactuable", "mascaras"]]

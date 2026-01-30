@@ -16,12 +16,19 @@ extends CharacterBody3D
 @onready var icono_linterna = $InterfazPermanente/IconoLinterna
 @onready var interzar_salir = $Salir
 
+# La mascara Tu lla sabe
+@export var sonido_mascara: AudioStreamPlayer
+@export var anim_mascara: AnimationPlayer
+@export var vista_mascara: TextureRect # O ColorRect, según lo que uses
+@onready var sonido_respiracion = $SonidoRespiracion # El nuevo sonido
 
 # --- Precarga de imágenes ---
 var img_linterna_on = preload("res://assets/Imagenes/linterna on .png")
 var img_linterna_off = preload("res://assets/Imagenes/linterna.png")
 
-const SPEED = 4.0
+const SPEED = 4.3
+const SPEED_NORMAL = 4.0
+const SPEED_MASCARA = 2.6 # Velocidad muy baja
 const JUMP_VELOCITY = 4.5
 const SENSITIVITY = 0.003 
 
@@ -31,6 +38,13 @@ var mascaras = 0
 # Variables de inventario (Listas de nombres)
 var inventario_llaves = []
 var inventario_mascaras = []
+
+# Mascara locooooo
+var esta_usando_mascara: bool = false
+var puede_usar_mascara: bool = true # Para el cooldown
+var tiempo_mascara_actual: float = 0.0
+const TIEMPO_MAX_MASCARA = 5.0
+const TIEMPO_COOLDOWN = 5.0
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -63,6 +77,16 @@ func _unhandled_input(event):
 					recoger_llave(objeto)
 				elif objeto.is_in_group("mascaras"):
 					recoger_mascara(objeto)
+	
+	# --- LÓGICA DE LA MÁSCARA (NUEVA Y MEJORADA) ---
+	if event.is_action_pressed("tecla_mascara"):
+		if not hud.visible:
+			if esta_usando_mascara:
+				_quitar_mascara()
+			elif puede_usar_mascara:
+				_poner_mascara()
+			else:
+				print("La máscara está en cooldown...")
 	
 	# Lógica para encender/apagar la linterna
 	if event.is_action_pressed("linterna"):
@@ -104,6 +128,17 @@ func _unhandled_input(event):
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+	
+	# --- CONTROL DE TIEMPO DE LA MÁSCARA ---
+	if esta_usando_mascara:
+		tiempo_mascara_actual += delta
+		if tiempo_mascara_actual >= TIEMPO_MAX_MASCARA:
+			_quitar_mascara() # Se quita sola al agotarse el tiempo
+	
+	# --- VELOCIDAD DINÁMICA ---
+	var velocidad_actual = SPEED_NORMAL
+	if esta_usando_mascara:
+		velocidad_actual = SPEED_MASCARA
 
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -119,6 +154,7 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	_gestionar_sonido_pasos()
 	
 	# --- LÓGICA DE PASOS ---
 	# Verificamos si el personaje está en el suelo y si realmente se está moviendo
@@ -130,6 +166,36 @@ func _physics_process(delta):
 		# Si se detiene o salta, paramos el sonido
 		if sonido_pasos.playing:
 			sonido_pasos.stop()
+			
+			
+func _poner_mascara():
+	esta_usando_mascara = true
+	tiempo_mascara_actual = 0.0
+	if sonido_mascara: sonido_mascara.play()
+	if sonido_respiracion: sonido_respiracion.play()
+	if anim_mascara: anim_mascara.play("poner_mascara")
+	print("Máscara puesta - Aire limitado")
+	
+
+func _quitar_mascara():
+	esta_usando_mascara = false
+	if sonido_mascara: sonido_mascara.play()
+	if sonido_respiracion: sonido_respiracion.stop()
+	if anim_mascara: anim_mascara.play_backwards("poner_mascara")
+	
+	# Iniciar Cooldown
+	puede_usar_mascara = false
+	print("Máscara quitada - Iniciando Cooldown")
+	await get_tree().create_timer(TIEMPO_COOLDOWN).timeout
+	puede_usar_mascara = true
+	print("Máscara lista para usar de nuevo")
+	
+
+func _gestionar_sonido_pasos():
+	if is_on_floor() and velocity.length() > 1.0:
+		if not sonido_pasos.playing: sonido_pasos.play()
+	else:
+		if sonido_pasos.playing: sonido_pasos.stop()
 
 # --- FUNCIONES DE RECOLECCIÓN ACTUALIZADAS ---
 
