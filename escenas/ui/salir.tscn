@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://vskyvrxmmbh1"]
+
+[ext_resource type="Script" uid="uid://bd1ry3hic7glk" path="res://escenas/ui/salir.gd" id="1_4uo87"]
+[ext_resource type="Texture2D" uid="uid://du2tkm2sysar" path="res://assets/Imagenes/Fondo.png" id="1_y1tuj"]
+
+[node name="Salir" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_4uo87")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -142.0
+offset_right = 310.0
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_y1tuj")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 332.0
+offset_top = 222.0
+offset_right = 834.0
+offset_bottom = 264.0
+theme_override_font_sizes/font_size = 30
+text = "Seguro que quieres salir del juego?"
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 306.0
+offset_top = 275.0
+offset_right = 346.0
+offset_bottom = 315.0
+scale = Vector2(13.523973, 3.3112898)
+
+[node name="NO" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 93.0
+offset_top = -16.0
+offset_right = 184.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = " NO "
+
+[node name="SI" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.0
+offset_top = -14.0
+offset_right = -95.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = " SI "
+
+[connection signal="pressed" from="NO" to="." method="_on_no_pressed"]
+[connection signal="pressed" from="SI" to="." method="_on_si_pressed"]

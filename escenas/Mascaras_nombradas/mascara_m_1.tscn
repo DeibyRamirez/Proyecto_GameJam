@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://etnw8it2bkqk"]
+
+[ext_resource type="PackedScene" uid="uid://dr8o77vyl68lu" path="res://escenas/mascara.tscn" id="1_flilw"]
+[ext_resource type="PackedScene" uid="uid://dy0tp5ekr2xnr" path="res://assets/Modelos3D/Mascaras/mascara_1.tscn" id="2_fibcy"]
+
+[node name="Mascara_M1" instance=ExtResource("1_flilw")]
+
+[node name="mascara1" parent="Visual" index="0" instance=ExtResource("2_fibcy")]
+transform = Transform3D(-1.1446089e-08, 0, -0.18, 0, 0.26185602, 0, 0.26185602, 0, -7.86805e-09, 0, -0.003536284, 1.7076516)

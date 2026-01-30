@@ -1,4 +1,2 @@
 extends Area3D
-
-# No necesitamos _on_body_entered si vamos a usar la tecla F
-# El jugador se encargará de detectar la llave con el RayCast
+@export var id_llave: String = "K1" # En el inspector, cambia esto a K1, K2, K3 o K4

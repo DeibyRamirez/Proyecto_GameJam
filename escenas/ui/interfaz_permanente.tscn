@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1iopu0vm5gvn"]
+
+[ext_resource type="Texture2D" uid="uid://cuhf21ly4lvki" path="res://assets/Imagenes/linterna.png" id="1_gcfj2"]
+
+[node name="InterfazPermanente" type="CanvasLayer"]
+
+[node name="IconoLinterna" type="TextureRect" parent="."]
+offset_left = 11.0
+offset_top = 535.0
+offset_right = 59.0
+offset_bottom = 583.0
+scale = Vector2(2.0235374, 2.0507705)
+texture = ExtResource("1_gcfj2")
