@@ -50,52 +50,45 @@ func _physics_process(delta: float) -> void:
 func _update_target_position():
 	navAgent.target_position = target.global_transform.origin
 
-# --- NUEVA FUNCIÓN CON SECUENCIA DE TIEMPO ---
 func _play_attack_sequence():
-	if is_attacking or not target or not fade_anim_player:
+	if is_attacking or not target:
 		return
 
 	is_attacking = true
 	velocity = Vector3.ZERO
 	
-	# 1. POSICIONAR AL MONSTRUO EN LA CARA DEL JUGADOR
-	# Calculamos una posición a 1.2 metros frente al jugador basándonos en hacia dónde mira
+	# 1. JUMPSCARE VISUAL
 	var forward_vector = -target.global_transform.basis.z 
 	global_transform.origin = target.global_transform.origin + (forward_vector * 1.2)
-	
-	# Hacemos que el monstruo mire directamente al jugador
 	look_at(target.global_transform.origin, Vector3.UP)
-	# Si tu modelo queda de espaldas, descomenta la línea de abajo:
-	# rotate_y(deg_to_rad(180)) 
 
-	# 2. INICIAR AUDIO Y ANIMACIÓN
-	if snd_attack:
-		snd_attack.play()
+	if snd_attack: snd_attack.play()
+	if anim_player.has_animation("Susto"): anim_player.play("Susto")
 	
-	if anim_player.has_animation("Susto"):
-		anim_player.play("Susto")
+	# Espera corta para el susto
+	await get_tree().create_timer(1.0).timeout
 	
-	# 3. TIEMPO DE "SHOW" (Jumpscare visual)
-	# Esperamos 2.5 segundos viendo al monstruo antes de empezar a oscurecer
-	await get_tree().create_timer(2.5).timeout
-	
-	# 4. FUNDIDO A NEGRO LENTO
-	# El tercer parámetro (0.4) hace que la animación sea más lenta (1.0 es normal)
-	fade_anim_player.play("fade_out", -1, 0.4) 
-	await fade_anim_player.animation_finished
-	
-	# 5. TELETRANPORTE (En la oscuridad)
+	# 2. MOSTRAR INFORMACIÓN DIRECTAMENTE (Saltamos el fade_out)
+	var pantalla_info = get_tree().get_first_node_in_group("interfaz_info")
+	if pantalla_info:
+		print("Llamando a pantalla de información...") # Verificalo en la consola
+		pantalla_info.mostrar_pantalla("Perder")
+	else:
+		print("ERROR: No se encontró el grupo interfaz_info en la escena")
+
+	# 3. TELETRANPORTE
 	_teleport_positions()
 	
-	# 6. ESPERAR A QUE TERMINE EL AUDIO DE 7 SEGUNDOS
-	# Como ya pasaron ~2.5s de susto + ~2.5s de fundido, esperamos el resto en negro
-	await get_tree().create_timer(2.0).timeout
+	# 4. TIEMPO PARA VER LA IMAGEN
+	await get_tree().create_timer(4.0).timeout
 	
-	# 7. REGRESAR LA VISIÓN
-	fade_anim_player.play_backwards("fade_out")
-	await fade_anim_player.animation_finished
+	# 5. OCULTAR INFO Y REINICIAR IA
+	if pantalla_info:
+		pantalla_info.ocultar_pantalla()
 	
 	is_attacking = false
+
+
 func _teleport_positions():
 	target.global_transform.origin = OFFICE_POSITION
 	global_transform.origin = start_position

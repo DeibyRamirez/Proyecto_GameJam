@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://du421u87xh7i3"]
+[gd_scene load_steps=9 format=3 uid="uid://du421u87xh7i3"]
 
 [ext_resource type="PackedScene" uid="uid://baihh1qcfgkpo" path="res://assets/Modelos3D/Linterna/Linterna.glb" id="1_1odni"]
 [ext_resource type="Script" uid="uid://b62nqqjqvgjgf" path="res://escenas/principal_render.gd" id="1_68ufw"]
 [ext_resource type="PackedScene" uid="uid://bwj0d5otnis0j" path="res://assets/Modelos3D/Mascaras/Mascarass.glb" id="2_63lhq"]
 [ext_resource type="Script" uid="uid://cekkwk1p28862" path="res://escenas/spot_light_3d.gd" id="2_68ufw"]
 [ext_resource type="Texture2D" uid="uid://du2tkm2sysar" path="res://assets/Imagenes/Fondo.png" id="5_fy53x"]
+[ext_resource type="PackedScene" uid="uid://d2qbnlgothvlp" path="res://escenas/ui/informacion.tscn" id="6_vfcrt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_68ufw"]
 albedo_color = Color(0, 0, 0, 1)
@@ -45,6 +46,8 @@ light_specular = 3.894
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fy53x")
+
+[node name="Informacion" parent="." instance=ExtResource("6_vfcrt")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

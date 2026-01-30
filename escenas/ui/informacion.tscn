@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2qbnlgothvlp"]
+
+[ext_resource type="Script" uid="uid://ce23cl6is2t3i" path="res://escenas/ui/informacion.gd" id="1_cp3ww"]
+[ext_resource type="Texture2D" uid="uid://byvjavcdlapqf" path="res://assets/Imagenes/Perder.jpeg" id="2_6yexo"]
+[ext_resource type="VideoStream" uid="uid://ebqr3n7ucpj8" path="res://assets/Videos/Llamada.ogv" id="3_bvr8n"]
+
+[node name="Informacion" type="CanvasLayer" groups=["interfaz_info"]]
+layer = 0
+script = ExtResource("1_cp3ww")
+
+[node name="ImagenVisual" type="TextureRect" parent="." groups=["interfaz_info"]]
+offset_left = 3.0
+offset_right = 1148.0
+offset_bottom = 768.0
+texture = ExtResource("2_6yexo")
+stretch_mode = 6
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+offset_right = 1153.0
+offset_bottom = 650.0
+stream = ExtResource("3_bvr8n")
+expand = true

@@ -37,6 +37,12 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	hud.visible = false
 	interzar_salir.visible = false
+	
+	# --- Lógica para arrancar con linterna apagada ---
+	linterna.visible = false # Apaga la luz físicamente
+	icono_linterna.texture = img_linterna_off # Cambia el icono a apagado
+	icono_linterna.modulate = Color(1, 1, 1, 0.5) # Color blanco semitransparente
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _unhandled_input(event):
@@ -102,7 +108,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_dir = Input.get_vector("moverse_izquierda", "moverse_derecha", "moverse_adelante", "moverse_atras")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction:
@@ -138,6 +144,23 @@ func recoger_llave(objeto):
 		if inventario_llaves.size() == 4:
 			print("¡Tienes todas las llaves! Ya puedes abrir la puerta principal.")
 			# Aquí podrías activar una animación o un sonido especial
+			var pantalla_info = get_tree().get_first_node_in_group("interfaz_info")
+			if pantalla_info:
+				# 2. Mostrar pantalla de Ganar
+				pantalla_info.mostrar_pantalla("Ganar")
+				
+				# 3. Esperar 5 segundos
+				# Usamos un Timer de la escena para no bloquear el juego
+				await get_tree().create_timer(5.0).timeout
+				
+				# 4. Regresar al menú principal (PrincipalRender)
+				# Asegúrate de que la ruta a tu escena de menú sea la correcta
+				get_tree().change_scene_to_file("res://escenas/principal_render.tscn")
+			else:
+				print("ERROR: No se encontró el grupo interfaz_info")
+				# Si falla la info, regresamos al menú de todos modos
+				get_tree().change_scene_to_file("res://escenas/principal_render.tscn")
+				
 	objeto.queue_free()
 
 func recoger_mascara(objeto):
