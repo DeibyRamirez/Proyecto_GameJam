@@ -71,7 +71,6 @@ stretch = true
 handle_input_locally = false
 msaa_3d = 3
 screen_space_aa = 1
-use_taa = true
 scaling_3d_scale = 2.0
 texture_mipmap_bias = -0.5
 size = Vector2i(350, 200)
@@ -90,18 +89,34 @@ scale = Vector2(0.20178756, 0.23960094)
 texture = ExtResource("5_fy53x")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-offset_left = 20.000061
+offset_left = 20.000002
 offset_top = 560.0
-offset_right = 640.0001
+offset_right = 640.0
 offset_bottom = 844.0
 scale = Vector2(0.20178756, 0.23960094)
 texture = ExtResource("5_fy53x")
 
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer"]
+offset_left = 21.0
+offset_top = 483.0
+offset_right = 711.23
+offset_bottom = 836.0747
+scale = Vector2(0.2680266, 0.18692924)
+texture = ExtResource("5_fy53x")
+
+[node name="TextureRect4" type="TextureRect" parent="CanvasLayer"]
+offset_left = 22.0
+offset_top = 402.0
+offset_right = 909.97156
+offset_bottom = 765.7739
+scale = Vector2(0.2680266, 0.18692924)
+texture = ExtResource("5_fy53x")
+
 [node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 268.99997
-offset_top = 448.7955
-offset_right = 908.0
-offset_bottom = 517.79553
+offset_left = 291.99997
+offset_top = 443.7955
+offset_right = 931.0
+offset_bottom = 512.79553
 rotation = -0.12047197
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(18.892157, 18.892157, 18.892157, 1)
@@ -110,12 +125,28 @@ text = "MUSEUM OF SILENT FACES"
 uppercase = true
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
-offset_left = 264.0
-offset_top = 459.7955
-offset_right = 303.99997
-offset_bottom = 499.7955
+offset_left = 287.0
+offset_top = 454.7955
+offset_right = 326.99997
+offset_bottom = 494.7955
 rotation = -0.12047197
 scale = Vector2(16.345152, 1.3114283)
+
+[node name="Button3" type="Button" parent="CanvasLayer"]
+offset_left = 29.825073
+offset_top = 492.39606
+offset_right = 196.82507
+offset_bottom = 542.39606
+theme_override_font_sizes/font_size = 30
+text = " CREDITOS "
+
+[node name="Button4" type="Button" parent="CanvasLayer"]
+offset_left = 33.0
+offset_top = 408.99997
+offset_right = 251.0
+offset_bottom = 458.99997
+theme_override_font_sizes/font_size = 30
+text = " CRONTROLES "
 
 [node name="Button" type="Button" parent="CanvasLayer"]
 offset_left = 1014.0
@@ -133,5 +164,7 @@ offset_bottom = 618.0
 theme_override_font_sizes/font_size = 30
 text = "SALIR"
 
+[connection signal="pressed" from="CanvasLayer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button4" to="." method="_on_button_4_pressed"]
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_button_2_pressed"]

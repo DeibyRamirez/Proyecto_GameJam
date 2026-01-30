@@ -1,22 +1,56 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2qbnlgothvlp"]
+[gd_scene load_steps=5 format=3 uid="uid://d2qbnlgothvlp"]
 
 [ext_resource type="Script" uid="uid://ce23cl6is2t3i" path="res://escenas/ui/informacion.gd" id="1_cp3ww"]
-[ext_resource type="Texture2D" uid="uid://byvjavcdlapqf" path="res://assets/Imagenes/Perder.jpeg" id="2_6yexo"]
+[ext_resource type="Texture2D" uid="uid://bkbynhg58y1e7" path="res://assets/Imagenes/Creditos.jpg" id="2_bvr8n"]
 [ext_resource type="VideoStream" uid="uid://ebqr3n7ucpj8" path="res://assets/Videos/Llamada.ogv" id="3_bvr8n"]
+[ext_resource type="Texture2D" uid="uid://du2tkm2sysar" path="res://assets/Imagenes/Fondo.png" id="4_x5ki3"]
 
 [node name="Informacion" type="CanvasLayer" groups=["interfaz_info"]]
 layer = 0
 script = ExtResource("1_cp3ww")
-
-[node name="ImagenVisual" type="TextureRect" parent="." groups=["interfaz_info"]]
-offset_left = 3.0
-offset_right = 1148.0
-offset_bottom = 768.0
-texture = ExtResource("2_6yexo")
-stretch_mode = 6
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
 offset_right = 1153.0
 offset_bottom = 650.0
 stream = ExtResource("3_bvr8n")
 expand = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(1150, 648)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -575.0
+offset_top = -324.0
+offset_right = 575.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(1150, 0)
+layout_mode = 2
+
+[node name="ImagenVisual" type="TextureRect" parent="ScrollContainer/CenterContainer" groups=["interfaz_info"]]
+layout_mode = 2
+texture = ExtResource("2_bvr8n")
+stretch_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 19.0
+offset_top = 21.999998
+offset_right = 639.0
+offset_bottom = 306.0
+scale = Vector2(0.12493749, 0.1381292)
+texture = ExtResource("4_x5ki3")
+
+[node name="BotonVolver" type="Button" parent="."]
+offset_left = 23.0
+offset_top = 26.0
+offset_right = 92.0
+offset_bottom = 57.0
+text = "VOLVER"
+
+[connection signal="pressed" from="BotonVolver" to="." method="_on_boton_volver_pressed"]
