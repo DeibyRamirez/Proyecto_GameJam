@@ -5,7 +5,8 @@ var imagenes_dict = {
 	"Advertencia": "res://assets/Imagenes/Advertencia.jpeg",
 	"Ganar": "res://assets/Imagenes/Ganar.jpeg",
 	"Controles": "res://assets/Imagenes/Controles.jpg",
-	"Creditos": "res://assets/Imagenes/Creditos.jpg"
+	"Creditos": "res://assets/Imagenes/Creditos.jpg",
+	"Susto": "res://assets/Imagenes/S1.jpg"
 }
 
 # RUTAS CORREGIDAS (Asegúrate de que los nombres en la escena sean idénticos)

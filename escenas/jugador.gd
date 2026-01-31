@@ -21,6 +21,7 @@ extends CharacterBody3D
 @export var anim_mascara: AnimationPlayer
 @export var vista_mascara: TextureRect # O ColorRect, según lo que uses
 @onready var sonido_respiracion = $SonidoRespiracion # El nuevo sonido
+@onready var sonido_susto = $SonidoSusto # El nuevo sonido
 
 # --- Precarga de imágenes ---
 var img_linterna_on = preload("res://assets/Imagenes/linterna on .png")
@@ -70,6 +71,11 @@ func _unhandled_input(event):
 		
 	# 2. INTERACCIÓN (F, Tab o Click Derecho si lo configuraste)
 	if event.is_action_pressed("interactuar"):
+		# --- NUEVA CONDICIÓN ---
+		if esta_usando_mascara:
+			print("No puedes recoger objetos con la máscara puesta.")
+			return # Detiene la función aquí mismo
+			
 		if raycast.is_colliding():
 			var objeto = raycast.get_collider()
 			
@@ -183,6 +189,9 @@ func _physics_process(delta):
 func _poner_mascara():
 	esta_usando_mascara = true
 	tiempo_mascara_actual = 0.0
+	
+	var pantalla_info = get_tree().get_first_node_in_group("interfaz_info")
+	
 	if sonido_mascara: sonido_mascara.play()
 	if sonido_respiracion: sonido_respiracion.play()
 	if anim_mascara: anim_mascara.play("poner_mascara")
@@ -249,8 +258,17 @@ func recoger_llave(objeto):
 				# Usamos un Timer de la escena para no bloquear el juego
 				await get_tree().create_timer(5.0).timeout
 				
+				# --- LIBERAR EL MOUSE AQUÍ ---
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+				# 2. Mostrar pantalla de Creditos
+				pantalla_info.mostrar_pantalla("Creditos")
+				
+				# Usamos un Timer de la escena para no bloquear el juego
+				await get_tree().create_timer(15.0).timeout
+				
 				# 4. Regresar al menú principal (PrincipalRender)
 				# Asegúrate de que la ruta a tu escena de menú sea la correcta
+				
 				get_tree().change_scene_to_file("res://escenas/principal_render.tscn")
 			else:
 				print("ERROR: No se encontró el grupo interfaz_info")
@@ -266,6 +284,19 @@ func recoger_mascara(objeto):
 		print("Inventario Máscaras: ", inventario_mascaras)
 		# Llamamos a la función del HUD pasando la lista actualizada
 		hud.actualizar_visual_inventario(inventario_mascaras)
+		
+		# --- NUEVA LÓGICA DE SUSTO AL RECOGER ---
+		if id == "M5" or id == "M6":
+			var pantalla_info = get_tree().get_first_node_in_group("interfaz_info")
+			if pantalla_info:
+				# 1. Mostramos la imagen y sonido
+				pantalla_info.mostrar_pantalla("Susto")
+				if sonido_susto: sonido_susto.play()
+				
+				# 2. Esperamos 3 segundos y ocultamos
+				await get_tree().create_timer(3.0).timeout
+				pantalla_info.ocultar_pantalla()
+				
 	objeto.queue_free()
 
 

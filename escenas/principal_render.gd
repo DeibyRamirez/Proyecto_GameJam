@@ -28,13 +28,13 @@ func _on_button_pressed() -> void:
 func _on_button_2_pressed():
 	get_tree().quit()
 
-func _on_button_3_pressed():
-	# Botón de Controles
-	abrir_info("Controles")
+#func _on_button_3_pressed():
+	## Botón de Controles
+	#abrir_info("Creditos")
 
 func _on_button_4_pressed():
 	# Botón de Créditos
-	abrir_info("Creditos")
+	abrir_info("Controles")
 
 func abrir_info(tipo: String):
 	var pantalla_info = get_tree().get_first_node_in_group("interfaz_info")

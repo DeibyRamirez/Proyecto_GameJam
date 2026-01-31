@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 const SPEED = 2.0
 const ATTACK_RANGE = 1.5
-const OFFICE_POSITION = Vector3(-3, 1, 7)
+const OFFICE_POSITION = Vector3(-5, 1.6, 8.4)
 
 @onready var navAgent = $NavigationAgent3D
 @onready var snd_attack = $SndAttack 
@@ -94,44 +94,47 @@ func _play_attack_sequence():
 	is_attacking = true
 	velocity = Vector3.ZERO
 	
-	# Detener animación de correr para que no se vea raro en el susto
+	# 1. Detener animaciones del monstruo
 	anim_player_mixamo.stop()
 	
-	# 1. JUMPSCARE VISUAL
+	# 2. Posicionar al monstruo frente a la cara del jugador para el susto 3D
 	var forward_vector = -target.global_transform.basis.z 
 	global_transform.origin = target.global_transform.origin + (forward_vector * 1.2)
 	look_at(target.global_transform.origin, Vector3.UP)
-	rotate_y(deg_to_rad(180)) # Ajuste de cara para Mixamo
+	rotate_y(deg_to_rad(180)) 
 
-	if snd_attack: snd_attack.play()
-	if anim_player_susto.has_animation("mixamo_com"): 
-		anim_player_susto.play("mixamo_com")
-	
-	# Espera corta para el susto
-	await get_tree().create_timer(2.5).timeout
-	fade_anim_player.play("fade_out", -1, 0.4) 
-	await fade_anim_player.animation_finished
-	
-	# 2. MOSTRAR INFORMACIÓN DIRECTAMENTE (Saltamos el fade_out)
+	# 3. ACTIVAR SUSTO (Imagen y Sonido)
 	var pantalla_info = get_tree().get_first_node_in_group("interfaz_info")
 	if pantalla_info:
-		print("Llamando a pantalla de información...") # Verificalo en la consola
+		pantalla_info.mostrar_pantalla("Susto")
+		
+	# Buscamos el sonido en el target (Jugador) y lo reproducimos
+	if target.has_node("SonidoSusto"):
+		target.get_node("SonidoSusto").play()
+	
+	# 4. Iniciar efecto de parpadeo negro (fade out)
+	fade_anim_player.play("fade_out", -1, 0.4) 
+	
+	# Esperamos un momento para que el susto se vea bien
+	await get_tree().create_timer(2.0).timeout
+	
+	# 5. MOSTRAR PANTALLA DE PERDER
+	if pantalla_info:
+		# Cambiamos la imagen de "Susto" por la de "Perder"
 		pantalla_info.mostrar_pantalla("Perder")
-	else:
-		print("ERROR: No se encontró el grupo interfaz_info en la escena")
-
-	# 3. TELETRANPORTE
+	
+	# 6. REINICIAR POSICIONES (Teletransporte)
 	_teleport_positions()
 	
-	# 4. TIEMPO PARA VER LA IMAGEN
-	await get_tree().create_timer(3.0).timeout
+	# 7. TIEMPO PARA VER LA IMAGEN DE DERROTA
+	await get_tree().create_timer(3.5).timeout
+	
+	# 8. QUITAR PANTALLA NEGRA Y OCULTAR INFO
 	fade_anim_player.play_backwards("fade_out")
-	await fade_anim_player.animation_finished
-	is_attacking = false
-		
-	# 5. OCULTAR INFO Y REINICIAR IA
 	if pantalla_info:
 		pantalla_info.ocultar_pantalla()
+		
+	is_attacking = false
 	
 
 func _teleport_positions():

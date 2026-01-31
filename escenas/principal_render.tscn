@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://du421u87xh7i3"]
+[gd_scene load_steps=10 format=3 uid="uid://bl1oekq51sdp5"]
 
 [ext_resource type="PackedScene" uid="uid://baihh1qcfgkpo" path="res://assets/Modelos3D/Linterna/Linterna.glb" id="1_1odni"]
 [ext_resource type="Script" uid="uid://b62nqqjqvgjgf" path="res://escenas/principal_render.gd" id="1_68ufw"]
 [ext_resource type="PackedScene" uid="uid://bwj0d5otnis0j" path="res://assets/Modelos3D/Mascaras/Mascarass.glb" id="2_63lhq"]
-[ext_resource type="Script" uid="uid://cekkwk1p28862" path="res://escenas/spot_light_3d.gd" id="2_68ufw"]
+[ext_resource type="Script" uid="uid://dbdbhqecyhtrh" path="res://escenas/spot_light_3d.gd" id="2_68ufw"]
 [ext_resource type="Texture2D" uid="uid://du2tkm2sysar" path="res://assets/Imagenes/Fondo.png" id="5_fy53x"]
 [ext_resource type="PackedScene" uid="uid://d2qbnlgothvlp" path="res://escenas/ui/informacion.tscn" id="6_vfcrt"]
 
@@ -96,19 +96,11 @@ offset_bottom = 844.0
 scale = Vector2(0.20178756, 0.23960094)
 texture = ExtResource("5_fy53x")
 
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer"]
-offset_left = 21.0
-offset_top = 483.0
-offset_right = 711.23
-offset_bottom = 836.0747
-scale = Vector2(0.2680266, 0.18692924)
-texture = ExtResource("5_fy53x")
-
 [node name="TextureRect4" type="TextureRect" parent="CanvasLayer"]
-offset_left = 22.0
-offset_top = 402.0
-offset_right = 909.97156
-offset_bottom = 765.7739
+offset_left = 24.0
+offset_top = 475.0
+offset_right = 911.97156
+offset_bottom = 838.7739
 scale = Vector2(0.2680266, 0.18692924)
 texture = ExtResource("5_fy53x")
 
@@ -132,21 +124,13 @@ offset_bottom = 494.7955
 rotation = -0.12047197
 scale = Vector2(16.345152, 1.3114283)
 
-[node name="Button3" type="Button" parent="CanvasLayer"]
-offset_left = 29.825073
-offset_top = 492.39606
-offset_right = 196.82507
-offset_bottom = 542.39606
-theme_override_font_sizes/font_size = 30
-text = " CREDITOS "
-
 [node name="Button4" type="Button" parent="CanvasLayer"]
-offset_left = 33.0
-offset_top = 408.99997
-offset_right = 251.0
-offset_bottom = 458.99997
+offset_left = 35.0
+offset_top = 481.99997
+offset_right = 253.0
+offset_bottom = 532.0
 theme_override_font_sizes/font_size = 30
-text = " CRONTROLES "
+text = " CONTROLES "
 
 [node name="Button" type="Button" parent="CanvasLayer"]
 offset_left = 1014.0
@@ -164,7 +148,6 @@ offset_bottom = 618.0
 theme_override_font_sizes/font_size = 30
 text = "SALIR"
 
-[connection signal="pressed" from="CanvasLayer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="CanvasLayer/Button4" to="." method="_on_button_4_pressed"]
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_button_2_pressed"]

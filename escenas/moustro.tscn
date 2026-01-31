@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://xtea6lpl1r8"]
+[gd_scene load_steps=14 format=4 uid="uid://xtea6lpl1r8"]
 
 [ext_resource type="Script" uid="uid://dqx5ii203u06g" path="res://escenas/moustro.gd" id="1_15s4m"]
 [ext_resource type="AudioStream" uid="uid://b51u3xv03fi2l" path="res://assets/sonidos/Jumcrek.wav" id="2_uk63i"]
@@ -175,6 +175,12 @@ bind/44/pose = Transform3D(-91.00462, 34.65733, 22.73824, -41.409584, -78.45627,
 bind/45/name = &"mixamorig_RightToeBase"
 bind/45/bone = -1
 bind/45/pose = Transform3D(-87.5158, 40.64263, 26.25188, -46.90674, -84.57347, -25.437891, 11.863498, -34.576077, 93.07928, -0.22255096, -0.1768255, -0.012848519)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nqw2a"]
+albedo_color = Color(0, 0, 0, 1)
+metallic = 0.85
+metallic_specular = 0.0
+roughness = 0.85
 
 [sub_resource type="Animation" id="Animation_2ls5r"]
 resource_name = "mixamo_com"
@@ -534,6 +540,10 @@ emission_energy_multiplier = 2.0
 script = ExtResource("1_15s4m")
 anim_player_susto = NodePath("AnimationPlayer")
 anim_player_mixamo = NodePath("AnimationPlayer2")
+
+[node name="VisionRay" type="RayCast3D" parent="."]
+transform = Transform3D(-0.99999994, 0, -1.5099579e-07, 0, 1, 0, 1.5099579e-07, 0, -0.99999994, 0, 0.80856097, 0)
+target_position = Vector3(0, 0, -6)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6212771, 0.115208864)
@@ -949,6 +959,7 @@ bones/56/scale = Vector3(1, 1, 1)
 [node name="model" type="MeshInstance3D" parent="Skeleton3D"]
 mesh = SubResource("ArrayMesh_uk63i")
 skin = SubResource("Skin_nqw2a")
+surface_material_override/0 = SubResource("StandardMaterial3D_nqw2a")
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 libraries = {
